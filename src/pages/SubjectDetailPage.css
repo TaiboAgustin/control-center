@@ -1,0 +1,447 @@
+.subject-detail-page {
+  padding: 2rem;
+  width: 100%;
+  animation: fadeSlideIn 0.3s ease;
+}
+
+/* Header */
+.subject-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.back-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.back-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.subject-detail-title {
+  flex: 1;
+}
+
+.subject-detail-title h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.15rem;
+}
+
+.subject-detail-title p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Global Progress */
+.global-progress-card {
+  margin-bottom: 2rem;
+}
+
+.global-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.global-progress-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.global-progress-header span {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+}
+
+.progress-track {
+  height: 10px;
+  background-color: var(--bg-primary);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.35rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-base), #60a5fa);
+  border-radius: 999px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-fill.complete {
+  background: linear-gradient(90deg, var(--success), #34d399);
+}
+
+.global-progress-pct {
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--accent-base);
+  font-weight: 600;
+}
+
+/* Weeks Container */
+.weeks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.weeks-header h2 {
+  font-size: 1.25rem;
+}
+
+.weeks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Week Block */
+.week-block {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  overflow: hidden;
+  animation: fadeSlideIn 0.2s ease;
+}
+
+.week-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.week-header:hover {
+  background: var(--bg-hover);
+}
+
+.week-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.week-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.week-title-group h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.week-date-range {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.week-progress-mini {
+  flex: 1;
+  max-width: 200px;
+}
+
+.mini-track {
+  height: 6px;
+  background-color: var(--bg-primary);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.mini-fill {
+  height: 100%;
+  background: var(--accent-base);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.mini-fill.complete {
+  background: var(--success);
+}
+
+.week-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.week-count {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.week-delete-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+}
+
+.week-delete-btn:hover {
+  color: var(--danger);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Week Content */
+.week-content {
+  border-top: 1px solid var(--border-color);
+  padding: 1rem 1.25rem;
+  animation: fadeSlideIn 0.2s ease;
+}
+
+.week-dates-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.week-dates-row label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.week-date-input {
+  padding: 0.35rem 0.5rem !important;
+  font-size: 0.8rem !important;
+  max-width: 160px;
+}
+
+/* Resource Item */
+.resource-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.625rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.resource-item:hover {
+  background: var(--bg-hover);
+}
+
+.resource-item.completed .resource-item-title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.resource-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--success);
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.resource-checkbox:hover {
+  border-color: var(--accent-base);
+}
+
+.resource-checkbox.checked {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: var(--success);
+}
+
+.resource-item-title {
+  flex: 1;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.resource-edit-input {
+  flex: 1;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: 1px solid var(--accent-base);
+  border-radius: var(--radius-sm);
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-light);
+}
+
+.resource-edit-btn,
+.resource-delete {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: all var(--transition-fast);
+}
+
+.resource-item:hover .resource-edit-btn,
+.resource-item:hover .resource-delete {
+  opacity: 1;
+}
+
+.resource-edit-btn:hover {
+  color: var(--accent-base);
+}
+
+.resource-delete:hover {
+  color: var(--danger);
+}
+
+/* Resource Link */
+.resource-link {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  padding: 0.2rem;
+  border-radius: 4px;
+  opacity: 0;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.resource-item:hover .resource-link {
+  opacity: 1;
+}
+
+.resource-link:hover {
+  color: var(--accent-base);
+  background: var(--accent-light);
+}
+
+/* Add Resource Form */
+.add-resource-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.add-resource-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.add-resource-row input {
+  flex: 1;
+  padding: 0.45rem 0.75rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.add-resource-row input:focus {
+  border-color: var(--accent-base);
+}
+
+.add-resource-row input::placeholder {
+  color: var(--text-muted);
+}
+
+.add-resource-row button {
+  padding: 0.45rem 0.75rem;
+  background: var(--accent-base);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: background var(--transition-fast);
+  white-space: nowrap;
+}
+
+.add-resource-row button:hover {
+  background: var(--accent-hover);
+}
+
+.add-resource-link-input {
+  padding: 0.4rem 0.75rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.add-resource-link-input:focus {
+  border-color: var(--accent-base);
+}
+
+.add-resource-link-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Empty States */
+.week-empty {
+  color: var(--text-muted);
+  font-size: 0.825rem;
+  padding: 0.5rem 0;
+}
+
+.no-weeks {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 3rem 1.5rem;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
