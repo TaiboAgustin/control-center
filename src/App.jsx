@@ -8,10 +8,11 @@ import { UniversityPage } from './pages/UniversityPage';
 import { SubjectDetailPage } from './pages/SubjectDetailPage';
 import { seedStudyPlan } from './db/db';
 import { seedMoodleProg3 } from './db/seedMoodleProg3';
+import { seedMoodleSOyR } from './db/seedMoodleSOyR';
 
 const App = () => {
   useEffect(() => {
-    seedStudyPlan().then(() => seedMoodleProg3());
+    seedStudyPlan().then(() => seedMoodleProg3()).then(() => seedMoodleSOyR());
   }, []);
 
   return (

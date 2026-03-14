@@ -17,6 +17,7 @@ export const UniversityPage = () => {
   const [expandedSemester, setExpandedSemester] = useState(null);
   const [showScheduleForm, setShowScheduleForm] = useState(false);
   const [scheduleForm, setScheduleForm] = useState({ subjectId: '', dayOfWeek: 1, startTime: '08:00', endTime: '10:00' });
+  const [activeResourceTab, setActiveResourceTab] = useState(null);
 
   // --- Computed Data ---
   const approvedCount = useMemo(() => subjects?.filter(s => s.status === 'approved').length || 0, [subjects]);
@@ -153,6 +154,21 @@ export const UniversityPage = () => {
       return a.daysUntil - b.daysUntil;
     });
   }, [resources, subjects, schedules, inProgressSubjects, weeksLookup]);
+
+  // --- Group pending resources by subjectId ---
+  const resourcesBySubject = useMemo(() => {
+    const map = {};
+    for (const r of pendingResources) {
+      if (!map[r.subjectId]) map[r.subjectId] = { name: r.subjectName, resources: [] };
+      map[r.subjectId].resources.push(r);
+    }
+    return map;
+  }, [pendingResources]);
+
+  // Auto-select first tab if none selected
+  const subjectIds = Object.keys(resourcesBySubject).map(Number);
+  const currentTab = activeResourceTab && resourcesBySubject[activeResourceTab] ? activeResourceTab : subjectIds[0] || null;
+  const currentTabResources = currentTab ? resourcesBySubject[currentTab]?.resources || [] : [];
 
   // --- Grouped subjects by semester ---
   const subjectsBySemester = useMemo(() => {
@@ -361,41 +377,55 @@ export const UniversityPage = () => {
               <p className="no-data">Marcá materias como "Cursando" desde el plan de estudios.</p>
             )}
           </section>
-
-          {/* Resources - Synced with weekly resources */}
-          <section className="card uni-resources-section">
-            <div className="section-title-row">
-              <h2><BookOpen size={18} /> Lecturas y Recursos</h2>
-            </div>
-
-            {pendingResources.length > 0 ? (
-              <div className="resources-list">
-                {pendingResources.map(res => (
-                  <div key={res.id} className={`resource-row ${res.isCompleted ? 'completed' : ''}`}>
-                    <button className="resource-check" onClick={() => toggleResource(res.id, res.isCompleted)}>
-                      {res.isCompleted ? <Check size={16} /> : <div className="empty-check" />}
-                    </button>
-                    <div className="resource-info">
-                      <span className="resource-title">{res.title}</span>
-                      <span className="resource-subject">
-                        {res.subjectName}
-                        {res.week ? ` · Semana ${res.week}` : ''}
-                        {res.daysUntil !== null && (
-                          <span className={`resource-deadline ${getDeadlineClass(res.daysUntil)}`}>
-                            {' '}· {getDeadlineLabel(res.daysUntil)}
-                          </span>
-                        )}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="no-data">No hay lecturas pendientes. Agregá recursos desde el detalle de cada materia.</p>
-            )}
-          </section>
         </div>
       </div>
+
+      {/* Resources - Full width below grid, with subject tabs */}
+      <section className="card uni-resources-section uni-resources-full">
+        <div className="section-title-row">
+          <h2><BookOpen size={18} /> Lecturas y Recursos</h2>
+        </div>
+
+        {subjectIds.length > 0 ? (
+          <>
+            <div className="resource-tabs">
+              {subjectIds.map(id => (
+                <button
+                  key={id}
+                  className={`resource-tab ${currentTab === id ? 'active' : ''}`}
+                  onClick={() => setActiveResourceTab(id)}
+                >
+                  {resourcesBySubject[id].name}
+                  <span className="resource-tab-count">{resourcesBySubject[id].resources.length}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="resources-list">
+              {currentTabResources.map(res => (
+                <div key={res.id} className={`resource-row ${res.isCompleted ? 'completed' : ''}`}>
+                  <button className="resource-check" onClick={() => toggleResource(res.id, res.isCompleted)}>
+                    {res.isCompleted ? <Check size={16} /> : <div className="empty-check" />}
+                  </button>
+                  <div className="resource-info">
+                    <span className="resource-title">{res.title}</span>
+                    <span className="resource-subject">
+                      Semana {res.week}
+                      {res.daysUntil !== null && (
+                        <span className={`resource-deadline ${getDeadlineClass(res.daysUntil)}`}>
+                          {' '}· {getDeadlineLabel(res.daysUntil)}
+                        </span>
+                      )}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          <p className="no-data">No hay lecturas pendientes. Agregá recursos desde el detalle de cada materia.</p>
+        )}
+      </section>
     </div>
   );
 };

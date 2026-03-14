@@ -117,6 +117,16 @@
   gap: 2rem;
 }
 
+.uni-right {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.uni-right .uni-schedule-section {
+  flex: 1;
+}
+
 /* Plan de Estudios */
 .uni-plan h2 {
   font-size: 1.25rem;
@@ -378,6 +388,61 @@
 
 .tag-delete:hover {
   color: var(--danger);
+}
+
+/* Resources - Full Width */
+.uni-resources-full {
+  margin-top: 2rem;
+}
+
+.resource-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0;
+  overflow-x: auto;
+}
+
+.resource-tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all var(--transition-fast);
+}
+
+.resource-tab:hover {
+  color: var(--text-primary);
+}
+
+.resource-tab.active {
+  color: var(--accent-base);
+  border-bottom-color: var(--accent-base);
+}
+
+.resource-tab-count {
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  min-width: 1.2rem;
+  text-align: center;
+}
+
+.resource-tab.active .resource-tab-count {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--accent-base);
 }
 
 /* Resources */

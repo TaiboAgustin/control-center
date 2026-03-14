@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Briefcase, Dumbbell, GraduationCap, CalendarDays } from 'lucide-react';
+import { LayoutDashboard, Briefcase, Dumbbell, GraduationCap, CalendarDays, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import './Sidebar.css';
 
 const navItems = [
@@ -11,12 +11,12 @@ const navItems = [
   { path: '/university', icon: GraduationCap, label: 'Universidad' },
 ];
 
-export const Sidebar = () => {
+export const Sidebar = ({ collapsed, onToggle }) => {
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
       <div className="sidebar-header">
         <div className="logo-icon"></div>
-        <h2>Control Center</h2>
+        {!collapsed && <h2>Control Center</h2>}
       </div>
       <nav className="sidebar-nav">
         {navItems.map((item) => (
@@ -24,14 +24,18 @@ export const Sidebar = () => {
             key={item.path} 
             to={item.path} 
             className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            title={collapsed ? item.label : ''}
           >
             <item.icon size={20} />
-            <span>{item.label}</span>
+            {!collapsed && <span>{item.label}</span>}
           </NavLink>
         ))}
       </nav>
       <div className="sidebar-footer">
-        <p>Stay focused.</p>
+        {!collapsed && <p>Stay focused.</p>}
+        <button className="sidebar-toggle" onClick={onToggle} title={collapsed ? 'Expandir' : 'Comprimir'}>
+          {collapsed ? <PanelLeftOpen size={18} /> : <PanelLeftClose size={18} />}
+        </button>
       </div>
     </aside>
   );
